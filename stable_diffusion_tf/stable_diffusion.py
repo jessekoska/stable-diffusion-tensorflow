@@ -1,6 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 import math
+import gc
 
 import tensorflow as tf
 from tensorflow import keras
@@ -36,7 +37,13 @@ class StableDiffusion:
         self.dtype = tf.float32
         if tf.keras.mixed_precision.global_policy().name == 'mixed_float16':
             self.dtype = tf.float16
-
+    def clear():
+        del self.text_encoder
+        del self.diffusion_model
+        del self.decoder
+        del self.encoder
+        gc.collect()
+        
     def generate(
         self,
         prompt,

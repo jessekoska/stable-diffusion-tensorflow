@@ -37,7 +37,8 @@ class StableDiffusion:
         self.dtype = tf.float32
         if tf.keras.mixed_precision.global_policy().name == 'mixed_float16':
             self.dtype = tf.float16
-    def clear():
+
+    def clear(self):
         del self.text_encoder
         del self.diffusion_model
         del self.decoder

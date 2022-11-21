@@ -5,6 +5,8 @@ import gc
 
 import tensorflow as tf
 from tensorflow import keras
+from keras import backend as K
+
 
 from .autoencoder_kl import Decoder, Encoder
 from .diffusion_model import UNetModel
@@ -43,6 +45,7 @@ class StableDiffusion:
         del self.diffusion_model
         del self.decoder
         del self.encoder
+        K.clear_session()
         gc.collect()
         
     def generate(

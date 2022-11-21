@@ -4,9 +4,9 @@ import math
 
 import tensorflow as tf
 from tensorflow import keras
-from keras.backend.tensorflow_backend import set_session
-from keras.backend.tensorflow_backend import clear_session
-from keras.backend.tensorflow_backend import get_session
+from tensorflow.python.keras.backend import set_session
+from tensorflow.python.keras.backend import clear_session
+from tensorflow.python.keras.backend import get_session
 import gc
 
 from .autoencoder_kl import Decoder, Encoder
@@ -64,7 +64,7 @@ class StableDiffusion:
         config.gpu_options.visible_device_list = "0"
         set_session(tf.Session(config=config))
         gc.collect()
-        
+
     def generate(
         self,
         prompt,
